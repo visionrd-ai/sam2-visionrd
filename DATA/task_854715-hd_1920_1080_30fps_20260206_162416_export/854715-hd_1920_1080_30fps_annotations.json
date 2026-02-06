@@ -1,0 +1,57 @@
+{
+  "taskId": "854715-hd_1920_1080_30fps",
+  "campaignId": "custom",
+  "videoName": "854715-hd_1920_1080_30fps.mp4",
+  "metadata": {
+    "fps": 20,
+    "totalFrames": 245,
+    "segmentStart": 1,
+    "segmentEnd": 245,
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "frames": [
+    {
+      "frameNo": 1,
+      "annotation": {
+        "type": "human",
+        "classes": ["object"],
+        "attributes": ["visible"],
+        "boxes": [
+          {
+            "id": "box_1",
+            "label": "person",
+            "x": 700,
+            "y": 300,
+            "width": 500,
+            "height": 600
+          }
+        ],
+        "keypoints": [],
+        "tags": []
+      }
+    },
+    {
+      "frameNo": 50,
+      "annotation": {
+        "type": "human",
+        "classes": ["object"],
+        "attributes": ["visible"],
+        "boxes": [
+          {
+            "id": "box_1",
+            "label": "person",
+            "x": 750,
+            "y": 320,
+            "width": 480,
+            "height": 580
+          }
+        ],
+        "keypoints": [],
+        "tags": []
+      }
+    }
+  ]
+}
