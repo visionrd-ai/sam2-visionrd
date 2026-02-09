@@ -3358,7 +3358,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "in_process",
@@ -3374,7 +3374,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "in_process",
@@ -3390,7 +3390,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "in_process",
@@ -3406,7 +3406,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "in_process",
@@ -3422,7 +3422,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "in_process",
@@ -3438,7 +3438,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "in_process",
@@ -3454,7 +3454,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "in_process",
@@ -3470,7 +3470,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "in_process",
@@ -3486,7 +3486,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "visible",
@@ -3502,7 +3502,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "visible",
@@ -3518,7 +3518,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "visible",
@@ -3534,7 +3534,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "visible",
@@ -3550,7 +3550,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_02_off"
+          "break_02_off"
         ],
         "attributes": [
           "visible",
@@ -3668,7 +3668,118 @@
           "visible",
           "in_process"
         ],
-        "boxes": [],
+        "boxes": [
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.11370157819225248,
+                "y": 0.6011477761836441
+              },
+              "point2": {
+                "x": 0.2710509680431325,
+                "y": 0.6011477761836441
+              },
+              "point3": {
+                "x": 0.2710509680431325,
+                "y": 0.47919655667144906
+              },
+              "point4": {
+                "x": 0.11370157819225248,
+                "y": 0.47919655667144906
+              }
+            },
+            "boxType": "breaker",
+            "label": 8
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.36119081779053086,
+                "y": 0.4576757532281205
+              },
+              "point2": {
+                "x": 0.4204447853276026,
+                "y": 0.4576757532281205
+              },
+              "point3": {
+                "x": 0.4204447853276026,
+                "y": 0.24390243902439024
+              },
+              "point4": {
+                "x": 0.36119081779053086,
+                "y": 0.24390243902439024
+              }
+            },
+            "boxType": "breaker",
+            "label": 10
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.3794835007173601,
+                "y": 0.7504397878651623
+              },
+              "point2": {
+                "x": 0.42707041848583877,
+                "y": 0.7504397878651623
+              },
+              "point3": {
+                "x": 0.42707041848583877,
+                "y": 0.5552367288378766
+              },
+              "point4": {
+                "x": 0.3794835007173601,
+                "y": 0.5552367288378766
+              }
+            },
+            "boxType": "breaker",
+            "label": 9
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.09433285509325678,
+                "y": 0.4246771879483501
+              },
+              "point2": {
+                "x": 0.2258696304406989,
+                "y": 0.4246771879483501
+              },
+              "point3": {
+                "x": 0.2258696304406989,
+                "y": 0.2539454806312769
+              },
+              "point4": {
+                "x": 0.09433285509325678,
+                "y": 0.2539454806312769
+              }
+            },
+            "boxType": "switch",
+            "label": 6
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.14705882352941174,
+                "y": 0.7432300923440835
+              },
+              "point2": {
+                "x": 0.2632711621233859,
+                "y": 0.7432300923440835
+              },
+              "point3": {
+                "x": 0.2632711621233859,
+                "y": 0.5954088952654233
+              },
+              "point4": {
+                "x": 0.14705882352941174,
+                "y": 0.5954088952654233
+              }
+            },
+            "boxType": "switch",
+            "label": 7
+          }
+        ],
         "keypoints": [],
         "tags": []
       }
@@ -9470,7 +9581,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -9486,7 +9597,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -9502,7 +9613,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -9518,7 +9629,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -9534,7 +9645,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -9550,7 +9661,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -9566,7 +9677,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -9582,7 +9693,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -9598,7 +9709,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "visible",
@@ -9614,7 +9725,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "visible",
@@ -9630,7 +9741,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "visible",
@@ -9646,7 +9757,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "visible",
@@ -9662,7 +9773,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "visible",
@@ -15438,7 +15549,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "in_process",
@@ -15454,7 +15565,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "in_process",
@@ -15470,7 +15581,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "in_process",
@@ -15486,7 +15597,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "in_process",
@@ -15502,7 +15613,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "in_process",
@@ -15518,7 +15629,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "in_process",
@@ -15534,7 +15645,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "in_process",
@@ -15550,7 +15661,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "in_process",
@@ -15566,7 +15677,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "visible",
@@ -15582,7 +15693,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "visible",
@@ -15598,7 +15709,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "visible",
@@ -15614,7 +15725,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "visible",
@@ -15630,7 +15741,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_on"
+          "break_01_on"
         ],
         "attributes": [
           "visible",
@@ -26574,7 +26685,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26590,7 +26701,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26606,7 +26717,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26622,7 +26733,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26638,7 +26749,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26654,7 +26765,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26670,7 +26781,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26686,7 +26797,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26702,7 +26813,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26718,7 +26829,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26734,7 +26845,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26750,7 +26861,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26766,7 +26877,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26782,7 +26893,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26798,7 +26909,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "in_process",
@@ -26814,7 +26925,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "visible",
@@ -26830,7 +26941,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "visible",
@@ -26846,7 +26957,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "visible",
@@ -26862,7 +26973,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "visible",
@@ -26878,7 +26989,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_off"
+          "break_03_off"
         ],
         "attributes": [
           "visible",
@@ -31006,7 +31117,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "in_process",
@@ -31022,7 +31133,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "in_process",
@@ -31038,7 +31149,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "in_process",
@@ -31054,7 +31165,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "in_process",
@@ -31070,7 +31181,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "in_process",
@@ -31086,7 +31197,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "in_process",
@@ -31102,7 +31213,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "in_process",
@@ -31118,7 +31229,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "in_process",
@@ -31134,7 +31245,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "in_process",
@@ -31150,7 +31261,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "visible",
@@ -31166,7 +31277,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "visible",
@@ -31182,7 +31293,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "visible",
@@ -31198,7 +31309,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "visible",
@@ -31214,7 +31325,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_03_on"
+          "break_03_on"
         ],
         "attributes": [
           "visible",

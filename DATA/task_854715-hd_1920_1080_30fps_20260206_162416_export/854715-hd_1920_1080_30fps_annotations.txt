@@ -1,7 +1,0 @@
-Video: 854715-hd_1920_1080_30fps.mp4
-Resolution: 1920x1080
-FPS: 20
-Total Frames: 245
-Created: 2026-02-06 16:24:17
-
-# Annotations will be added here

@@ -17,7 +17,7 @@ End Frames: 4501
 
 Total Frames Trimmed Version: 2251
 
-Export Date: 2026-01-06T13:20:59.821Z
+Export Date: 2026-02-09T13:02:31.308Z
 
 ########################################
 # Annotations (Format: FrameNo:{verb},{noun},{state},{visibility})
@@ -478,29 +478,29 @@ Export Date: 2026-01-06T13:20:59.821Z
 453:breaker,02_in_process,in_process,visible
 454:breaker,02_in_process,in_process,visible
 455:breaker,02_in_process,in_process,visible
-456:breaker,02_on,in_process,visible
-457:breaker,02_on,in_process,visible
-458:breaker,02_on,in_process,visible
-459:breaker,02_on,in_process,visible
-460:breaker,02_on,in_process,visible
-461:breaker,02_on,in_process,visible
-462:breaker,02_on,in_process,visible
-463:breaker,02_on,in_process,visible
-464:breaker,02_on,in_process,visible
-465:breaker,02_on,in_process,visible
-466:breaker,02_on,in_process,visible
-467:breaker,02_on,in_process,visible
-468:breaker,02_on,in_process,visible
-469:breaker,02_on,in_process,visible
-470:breaker,02_on,in_process,visible
-471:breaker,02_on,in_process,visible
-472:breaker,02_on,in_process,visible
-473:breaker,02_on,in_process,visible
-474:breaker,02_on,completed,visible
-475:breaker,02_on,completed,visible
-476:breaker,02_on,completed,visible
-477:breaker,02_on,completed,visible
-478:breaker,02_on,completed,visible
+456:break,02_on,in_process,visible
+457:break,02_on,in_process,visible
+458:break,02_on,in_process,visible
+459:break,02_on,in_process,visible
+460:break,02_on,in_process,visible
+461:break,02_on,in_process,visible
+462:break,02_on,in_process,visible
+463:break,02_on,in_process,visible
+464:break,02_on,in_process,visible
+465:break,02_on,in_process,visible
+466:break,02_on,in_process,visible
+467:break,02_on,in_process,visible
+468:break,02_on,in_process,visible
+469:break,02_on,in_process,visible
+470:break,02_on,in_process,visible
+471:break,02_on,in_process,visible
+472:break,02_on,in_process,visible
+473:break,02_on,in_process,visible
+474:break,02_on,completed,visible
+475:break,02_on,completed,visible
+476:break,02_on,completed,visible
+477:break,02_on,completed,visible
+478:break,02_on,completed,visible
 479:bg,bg,in_process,visible
 480:bg,bg,in_process,visible
 481:bg,bg,in_process,visible
@@ -829,19 +829,19 @@ Export Date: 2026-01-06T13:20:59.821Z
 804:breaker,02_in_process,in_process,visible
 805:breaker,02_in_process,in_process,visible
 806:breaker,02_in_process,in_process,visible
-807:breaker,02_off,in_process,visible
-808:breaker,02_off,in_process,visible
-809:breaker,02_off,in_process,visible
-810:breaker,02_off,in_process,visible
-811:breaker,02_off,in_process,visible
-812:breaker,02_off,in_process,visible
-813:breaker,02_off,in_process,visible
-814:breaker,02_off,in_process,visible
-815:breaker,02_off,completed,visible
-816:breaker,02_off,completed,visible
-817:breaker,02_off,completed,visible
-818:breaker,02_off,completed,visible
-819:breaker,02_off,completed,visible
+807:break,02_off,in_process,visible
+808:break,02_off,in_process,visible
+809:break,02_off,in_process,visible
+810:break,02_off,in_process,visible
+811:break,02_off,in_process,visible
+812:break,02_off,in_process,visible
+813:break,02_off,in_process,visible
+814:break,02_off,in_process,visible
+815:break,02_off,completed,visible
+816:break,02_off,completed,visible
+817:break,02_off,completed,visible
+818:break,02_off,completed,visible
+819:break,02_off,completed,visible
 820:bg,bg,in_process,visible
 821:bg,bg,in_process,visible
 822:bg,bg,in_process,visible

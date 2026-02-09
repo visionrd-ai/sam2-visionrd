@@ -17,7 +17,7 @@ End Frames: 2322
 
 Total Frames Trimmed Version: 2322
 
-Export Date: 2026-01-06T13:18:38.117Z
+Export Date: 2026-02-09T13:00:43.794Z
 
 ########################################
 # Annotations (Format: FrameNo:{verb},{noun},{state},{visibility})
@@ -1598,21 +1598,21 @@ Export Date: 2026-01-06T13:18:38.117Z
 1573:breaker,02_in_process,in_process,visible
 1574:breaker,02_in_process,in_process,visible
 1575:breaker,02_in_process,in_process,visible
-1576:breaker,02_off,in_process,visible
-1577:breaker,02_off,in_process,visible
-1578:breaker,02_off,in_process,visible
-1579:breaker,02_off,in_process,visible
-1580:breaker,02_off,in_process,visible
-1581:breaker,02_off,in_process,visible
-1582:breaker,02_off,in_process,visible
-1583:breaker,02_off,in_process,visible
-1584:breaker,02_off,in_process,visible
-1585:breaker,02_off,in_process,visible
-1586:breaker,02_off,completed,visible
-1587:breaker,02_off,completed,visible
-1588:breaker,02_off,completed,visible
-1589:breaker,02_off,completed,visible
-1590:breaker,02_off,completed,visible
+1576:break,02_off,in_process,visible
+1577:break,02_off,in_process,visible
+1578:break,02_off,in_process,visible
+1579:break,02_off,in_process,visible
+1580:break,02_off,in_process,visible
+1581:break,02_off,in_process,visible
+1582:break,02_off,in_process,visible
+1583:break,02_off,in_process,visible
+1584:break,02_off,in_process,visible
+1585:break,02_off,in_process,visible
+1586:break,02_off,completed,visible
+1587:break,02_off,completed,visible
+1588:break,02_off,completed,visible
+1589:break,02_off,completed,visible
+1590:break,02_off,completed,visible
 1591:bg,bg,in_process,visible
 1592:bg,bg,in_process,visible
 1593:bg,bg,in_process,visible
@@ -1756,23 +1756,23 @@ Export Date: 2026-01-06T13:18:38.117Z
 1731:breaker,02_in_process,in_process,visible
 1732:breaker,02_in_process,in_process,visible
 1733:breaker,02_in_process,in_process,visible
-1734:breaker,02_on,in_process,visible
-1735:breaker,02_on,in_process,visible
-1736:breaker,02_on,in_process,visible
-1737:breaker,02_on,in_process,visible
-1738:breaker,02_on,in_process,visible
-1739:breaker,02_on,in_process,visible
-1740:breaker,02_on,in_process,visible
-1741:breaker,02_on,in_process,visible
-1742:breaker,02_on,in_process,visible
-1743:breaker,02_on,in_process,visible
-1744:breaker,02_on,in_process,visible
-1745:breaker,02_on,in_process,visible
-1746:breaker,02_on,completed,visible
-1747:breaker,02_on,completed,visible
-1748:breaker,02_on,completed,visible
-1749:breaker,02_on,completed,visible
-1750:breaker,02_on,completed,visible
+1734:break,02_on,in_process,visible
+1735:break,02_on,in_process,visible
+1736:break,02_on,in_process,visible
+1737:break,02_on,in_process,visible
+1738:break,02_on,in_process,visible
+1739:break,02_on,in_process,visible
+1740:break,02_on,in_process,visible
+1741:break,02_on,in_process,visible
+1742:break,02_on,in_process,visible
+1743:break,02_on,in_process,visible
+1744:break,02_on,in_process,visible
+1745:break,02_on,in_process,visible
+1746:break,02_on,completed,visible
+1747:break,02_on,completed,visible
+1748:break,02_on,completed,visible
+1749:break,02_on,completed,visible
+1750:break,02_on,completed,visible
 1751:bg,bg,in_process,visible
 1752:bg,bg,in_process,visible
 1753:bg,bg,in_process,visible

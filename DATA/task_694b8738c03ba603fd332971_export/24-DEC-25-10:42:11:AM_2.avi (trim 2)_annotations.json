@@ -3636,7 +3636,118 @@
           "in_process",
           "visible"
         ],
-        "boxes": [],
+        "boxes": [
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.4679144385026738,
+                "y": 0.38146167557932265
+              },
+              "point2": {
+                "x": 0.624331550802139,
+                "y": 0.38146167557932265
+              },
+              "point3": {
+                "x": 0.624331550802139,
+                "y": 0.27807486631016043
+              },
+              "point4": {
+                "x": 0.4679144385026738,
+                "y": 0.27807486631016043
+              }
+            },
+            "boxType": "breaker",
+            "label": 9
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.21524064171122995,
+                "y": 0.43315508021390375
+              },
+              "point2": {
+                "x": 0.35962566844919786,
+                "y": 0.43315508021390375
+              },
+              "point3": {
+                "x": 0.35962566844919786,
+                "y": 0.32976827094474154
+              },
+              "point4": {
+                "x": 0.21524064171122995,
+                "y": 0.32976827094474154
+              }
+            },
+            "boxType": "breaker",
+            "label": 10
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.40240641711229946,
+                "y": 0.6773618538324421
+              },
+              "point2": {
+                "x": 0.4679144385026738,
+                "y": 0.6773618538324421
+              },
+              "point3": {
+                "x": 0.4679144385026738,
+                "y": 0.47771836007130125
+              },
+              "point4": {
+                "x": 0.40240641711229946,
+                "y": 0.47771836007130125
+              }
+            },
+            "boxType": "breaker",
+            "label": 8
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.49331550802139035,
+                "y": 0.6220942970973836
+              },
+              "point2": {
+                "x": 0.5975935828877005,
+                "y": 0.6220942970973836
+              },
+              "point3": {
+                "x": 0.5975935828877005,
+                "y": 0.47771836007130125
+              },
+              "point4": {
+                "x": 0.49331550802139035,
+                "y": 0.47771836007130125
+              }
+            },
+            "boxType": "switch",
+            "label": 6
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.24598930481283424,
+                "y": 0.6898347540418183
+              },
+              "point2": {
+                "x": 0.3516042780748663,
+                "y": 0.6898347540418183
+              },
+              "point3": {
+                "x": 0.3516042780748663,
+                "y": 0.5347593582887701
+              },
+              "point4": {
+                "x": 0.24598930481283424,
+                "y": 0.5347593582887701
+              }
+            },
+            "boxType": "switch",
+            "label": 7
+          }
+        ],
         "keypoints": [],
         "tags": []
       }
@@ -25662,7 +25773,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -25678,7 +25789,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -25694,7 +25805,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -25710,7 +25821,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -25726,7 +25837,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -25742,7 +25853,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -25758,7 +25869,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -25774,7 +25885,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -25790,7 +25901,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -25806,7 +25917,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "in_process",
@@ -25822,7 +25933,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "visible",
@@ -25838,7 +25949,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "visible",
@@ -25854,7 +25965,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "visible",
@@ -25870,7 +25981,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "visible",
@@ -25886,7 +25997,7 @@
       "annotation": {
         "type": "human",
         "classes": [
-          "breaker_01_off"
+          "break_01_off"
         ],
         "attributes": [
           "visible",

@@ -17,7 +17,7 @@ End Frames: 2411
 
 Total Frames Trimmed Version: 2411
 
-Export Date: 2026-01-06T13:19:06.514Z
+Export Date: 2026-02-09T13:00:59.730Z
 
 ########################################
 # Annotations (Format: FrameNo:{verb},{noun},{state},{visibility})
@@ -650,22 +650,22 @@ Export Date: 2026-01-06T13:19:06.514Z
 625:breaker,03_in_process,in_process,visible
 626:breaker,03_in_process,in_process,visible
 627:breaker,03_in_process,in_process,visible
-628:breaker,03_off,in_process,visible
-629:breaker,03_off,in_process,visible
-630:breaker,03_off,in_process,visible
-631:breaker,03_off,in_process,visible
-632:breaker,03_off,in_process,visible
-633:breaker,03_off,in_process,visible
-634:breaker,03_off,in_process,visible
-635:breaker,03_off,in_process,visible
-636:breaker,03_off,in_process,visible
-637:breaker,03_off,in_process,visible
-638:breaker,03_off,in_process,visible
-639:breaker,03_off,completed,visible
-640:breaker,03_off,completed,visible
-641:breaker,03_off,completed,visible
-642:breaker,03_off,completed,visible
-643:breaker,03_off,completed,visible
+628:break,03_off,in_process,visible
+629:break,03_off,in_process,visible
+630:break,03_off,in_process,visible
+631:break,03_off,in_process,visible
+632:break,03_off,in_process,visible
+633:break,03_off,in_process,visible
+634:break,03_off,in_process,visible
+635:break,03_off,in_process,visible
+636:break,03_off,in_process,visible
+637:break,03_off,in_process,visible
+638:break,03_off,in_process,visible
+639:break,03_off,completed,visible
+640:break,03_off,completed,visible
+641:break,03_off,completed,visible
+642:break,03_off,completed,visible
+643:break,03_off,completed,visible
 644:bg,bg,in_process,visible
 645:bg,bg,in_process,visible
 646:bg,bg,in_process,visible
@@ -898,24 +898,24 @@ Export Date: 2026-01-06T13:19:06.514Z
 873:breaker,03_in_process,in_process,visible
 874:breaker,03_in_process,in_process,visible
 875:breaker,03_in_process,in_process,visible
-876:breaker,03_on,in_process,visible
-877:breaker,03_on,in_process,visible
-878:breaker,03_on,in_process,visible
-879:breaker,03_on,in_process,visible
-880:breaker,03_on,in_process,visible
-881:breaker,03_on,in_process,visible
-882:breaker,03_on,in_process,visible
-883:breaker,03_on,in_process,visible
-884:breaker,03_on,in_process,visible
-885:breaker,03_on,in_process,visible
-886:breaker,03_on,in_process,visible
-887:breaker,03_on,in_process,visible
-888:breaker,03_on,in_process,visible
-889:breaker,03_on,completed,visible
-890:breaker,03_on,completed,visible
-891:breaker,03_on,completed,visible
-892:breaker,03_on,completed,visible
-893:breaker,03_on,completed,visible
+876:break,03_on,in_process,visible
+877:break,03_on,in_process,visible
+878:break,03_on,in_process,visible
+879:break,03_on,in_process,visible
+880:break,03_on,in_process,visible
+881:break,03_on,in_process,visible
+882:break,03_on,in_process,visible
+883:break,03_on,in_process,visible
+884:break,03_on,in_process,visible
+885:break,03_on,in_process,visible
+886:break,03_on,in_process,visible
+887:break,03_on,in_process,visible
+888:break,03_on,in_process,visible
+889:break,03_on,completed,visible
+890:break,03_on,completed,visible
+891:break,03_on,completed,visible
+892:break,03_on,completed,visible
+893:break,03_on,completed,visible
 894:bg,bg,in_process,visible
 895:bg,bg,in_process,visible
 896:bg,bg,in_process,visible
