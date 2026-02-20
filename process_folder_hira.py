@@ -28,6 +28,13 @@ def parse_args():
     )
     
     parser.add_argument(
+        '--script',
+        type=str,
+        default='process_bidirectional_combined.py',
+        help='Processing script to use (relative to script directory or absolute path)'
+    )
+    
+    parser.add_argument(
         '--model-config',
         type=str,
         default='configs/sam2.1/sam2.1_hiera_t.yaml',
@@ -165,7 +172,7 @@ def find_input_folders(data_folder, filter_str=None, exclude_str=None):
 
 def process_folder(folder_path, args, script_path):
     """
-    Process a single folder using process_Sam2_hira_final.py
+    Process a single folder using the specified processing script.
     Returns: (success: bool, error_message: str or None)
     """
     folder_name = os.path.basename(folder_path)
@@ -174,6 +181,7 @@ def process_folder(folder_path, args, script_path):
     print(f"PROCESSING FOLDER: {folder_name}")
     print(f"{'='*70}")
     print(f"Path: {folder_path}")
+    print(f"Script: {os.path.basename(script_path)}")
     print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{'='*70}\n")
     
@@ -188,12 +196,14 @@ def process_folder(folder_path, args, script_path):
         '--device', args.device
     ]
     
-    # Add optional flags
+    # Add optional flags (for backward compatibility with older scripts)
     if args.skip_preprocessing:
-        cmd.append('--skip-preprocessing')
+        if '--skip-preprocessing' not in str(cmd):  # Check if script supports it
+            cmd.append('--skip-preprocessing')
     
     if args.skip_frame_extraction:
-        cmd.append('--skip-frame-extraction')
+        if '--skip-frame-extraction' not in str(cmd):  # Check if script supports it
+            cmd.append('--skip-frame-extraction')
     
     # Run the process
     try:
@@ -254,13 +264,21 @@ def main():
     """Main batch processing execution."""
     args = parse_args()
     
-    # Get script directory and path to process_Sam2_hira_final.py
+    # Get script directory
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    sam2_script = os.path.join(script_dir, 'process_Sam2_hira_final.py')
+    
+    # Resolve processing script path (relative to script_dir or absolute)
+    if os.path.isabs(args.script):
+        # Absolute path provided
+        processing_script = args.script
+    else:
+        # Relative to script directory
+        processing_script = os.path.join(script_dir, args.script)
     
     # Check if processing script exists
-    if not os.path.exists(sam2_script):
-        print(f"❌ Error: Processing script not found: {sam2_script}")
+    if not os.path.exists(processing_script):
+        print(f"❌ Error: Processing script not found: {processing_script}")
+        print(f"   Tried: {processing_script}")
         sys.exit(1)
     
     # Get absolute path to data folder
@@ -270,7 +288,8 @@ def main():
     print(f"SAM2 BATCH PROCESSING")
     print(f"{'='*70}")
     print(f"Data folder: {data_folder}")
-    print(f"Processing script: {sam2_script}")
+    print(f"Processing script: {processing_script}")
+    print(f"Script name: {os.path.basename(processing_script)}")
     print(f"Model config: {args.model_config}")
     print(f"Checkpoint: {args.checkpoint}")
     print(f"Device: {args.device}")
@@ -325,7 +344,7 @@ def main():
         print(f"PROGRESS: Processing folder {i}/{len(folders_to_process)}")
         print(f"{'='*70}\n")
         
-        success, error = process_folder(folder_path, args, sam2_script)
+        success, error = process_folder(folder_path, args, processing_script)
         
         results.append({
             'folder': folder_name,

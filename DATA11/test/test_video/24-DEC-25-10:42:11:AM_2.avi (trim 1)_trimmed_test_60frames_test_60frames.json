@@ -1,0 +1,1208 @@
+{
+  "taskId": "694b8738c03ba603fd332970",
+  "campaignId": "6941486f3e5e955a413875eb",
+  "videoName": "24-DEC-25-10:42:11:AM_2.avi (trim 1)_trimmed_test_60frames_test_60frames",
+  "metadata": {
+    "fps": 20.0,
+    "totalFrames": 60,
+    "createdDate": "2026-02-20 16:11:05",
+    "sourceVideo": "24-DEC-25-10:42:11:AM_2.avi (trim 1)_trimmed_test_60frames.mp4",
+    "sourceJSON": "24-DEC-25-10:42:11:AM_2.avi (trim 1)_trimmed_test_60frames.json",
+    "annotatedFrameOriginal": 31,
+    "frameRangeOriginal": "0-59",
+    "description": "Test video: 30 frames before + annotated frame + 29 frames after"
+  },
+  "frames": [
+    {
+      "frameNo": 1,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 1,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 2,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 2,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 3,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 3,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 4,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 4,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 5,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 5,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 6,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 6,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 7,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 7,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 8,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 8,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 9,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 9,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 10,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 10,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 11,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 11,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 12,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 12,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 13,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 13,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 14,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 14,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 15,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 15,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 16,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 16,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 17,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 17,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 18,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 18,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 19,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 19,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 20,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 20,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 21,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 21,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 22,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 22,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 23,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 23,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 24,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 24,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 25,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 25,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 26,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 26,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 27,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 27,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 28,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 28,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 29,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 29,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 30,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 30,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 31,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.5828877005347594,
+                "y": 0.4852457184357044
+              },
+              "point2": {
+                "x": 0.7457681969425054,
+                "y": 0.4852457184357044
+              },
+              "point3": {
+                "x": 0.7457681969425054,
+                "y": 0.3689839572192513
+              },
+              "point4": {
+                "x": 0.5828877005347594,
+                "y": 0.3689839572192513
+              }
+            },
+            "boxType": "breaker",
+            "label": 9
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.31684491978609625,
+                "y": 0.4899751878342111
+              },
+              "point2": {
+                "x": 0.46380865814552175,
+                "y": 0.4899751878342111
+              },
+              "point3": {
+                "x": 0.46380865814552175,
+                "y": 0.3761140819964349
+              },
+              "point4": {
+                "x": 0.31684491978609625,
+                "y": 0.3761140819964349
+              }
+            },
+            "boxType": "breaker",
+            "label": 10
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.49866310160427807,
+                "y": 0.7486631016042781
+              },
+              "point2": {
+                "x": 0.5521390374331551,
+                "y": 0.7486631016042781
+              },
+              "point3": {
+                "x": 0.5521390374331551,
+                "y": 0.5472370766488414
+              },
+              "point4": {
+                "x": 0.49866310160427807,
+                "y": 0.5472370766488414
+              }
+            },
+            "boxType": "breaker",
+            "label": 8
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.5975935828877005,
+                "y": 0.7203829437801679
+              },
+              "point2": {
+                "x": 0.7045454545454545,
+                "y": 0.7203829437801679
+              },
+              "point3": {
+                "x": 0.7045454545454545,
+                "y": 0.5739750445632799
+              },
+              "point4": {
+                "x": 0.5975935828877005,
+                "y": 0.5739750445632799
+              }
+            },
+            "boxType": "switch",
+            "label": 7
+          },
+          {
+            "coordinates": {
+              "point1": {
+                "x": 0.33689839572192515,
+                "y": 0.7290552584670231
+              },
+              "point2": {
+                "x": 0.44512350394703337,
+                "y": 0.7290552584670231
+              },
+              "point3": {
+                "x": 0.44512350394703337,
+                "y": 0.5775401069518716
+              },
+              "point4": {
+                "x": 0.33689839572192515,
+                "y": 0.5775401069518716
+              }
+            },
+            "boxType": "switch",
+            "label": 6
+          }
+        ],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 31,
+      "isAnnotatedFrame": true
+    },
+    {
+      "frameNo": 32,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 32,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 33,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 33,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 34,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 34,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 35,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 35,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 36,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 36,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 37,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 37,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 38,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 38,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 39,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 39,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 40,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 40,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 41,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 41,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 42,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 42,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 43,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 43,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 44,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 44,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 45,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 45,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 46,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 46,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 47,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 47,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 48,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 48,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 49,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 49,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 50,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 50,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 51,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 51,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 52,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 52,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 53,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 53,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 54,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 54,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 55,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 55,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 56,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 56,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 57,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 57,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 58,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 58,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 59,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "bg_bg"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 59,
+      "isAnnotatedFrame": false
+    },
+    {
+      "frameNo": 60,
+      "annotation": {
+        "type": "human",
+        "classes": [
+          "switch_02_in_process"
+        ],
+        "attributes": [
+          "in_process",
+          "visible"
+        ],
+        "boxes": [],
+        "keypoints": [],
+        "tags": []
+      },
+      "originalFrameNo": 60,
+      "isAnnotatedFrame": false
+    }
+  ]
+}

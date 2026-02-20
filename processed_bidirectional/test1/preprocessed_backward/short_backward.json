@@ -1,0 +1,13 @@
+{
+  "taskId": "6944f5b2c03ba603fd2de070",
+  "campaignId": "6941486f3e5e955a413875eb",
+  "videoName": "short_backward",
+  "metadata": {
+    "fps": 20.0,
+    "totalFrames": 1,
+    "direction": "backward",
+    "originalAnnotatedFrame": 1,
+    "processedDate": "2026-02-20 16:01:43"
+  },
+  "frames": []
+}
