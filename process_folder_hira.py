@@ -64,6 +64,13 @@ def parse_args():
     )
     
     parser.add_argument(
+        '--output-folder',
+        type=str,
+        default=None,
+        help='Custom output folder path (if not specified, uses default location per script)'
+    )
+    
+    parser.add_argument(
         '--skip-preprocessing',
         action='store_true',
         help='Skip preprocessing step (use existing processed files)'
@@ -196,7 +203,9 @@ def process_folder(folder_path, args, script_path):
         '--device', args.device
     ]
     
-    # Add optional flags (for backward compatibility with older scripts)
+    # Add output folder if specified
+    if args.output_folder:
+        cmd.extend(['--output-folder', args.output_folder])
     if args.skip_preprocessing:
         if '--skip-preprocessing' not in str(cmd):  # Check if script supports it
             cmd.append('--skip-preprocessing')
@@ -294,6 +303,8 @@ def main():
     print(f"Checkpoint: {args.checkpoint}")
     print(f"Device: {args.device}")
     print(f"FPS: {args.fps}")
+    if args.output_folder:
+        print(f"Output folder: {args.output_folder}")
     if args.filter:
         print(f"Filter: {args.filter}")
     if args.exclude:

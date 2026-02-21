@@ -401,6 +401,85 @@ def combine_per_object_videos_v2(objects_bwd_dir, objects_fwd_dir, objects_combi
     return combined_count
 
 
+def combine_object_videos_by_type(objects_bwd_dir, objects_fwd_dir, objects_combined_dir, fps, 
+                                   output_type, bwd_suffix, fwd_suffix):
+    """
+    Combine per-object videos from backward and forward based on type.
+    Extracts object labels using regex to handle complex filenames.
+    """
+    import re
+    print(f"  Combining {output_type} object videos...")
+    
+    os.makedirs(objects_combined_dir, exist_ok=True)
+    
+    # Find all backward object videos
+    bwd_videos = {}
+    if objects_bwd_dir and os.path.exists(objects_bwd_dir):
+        for f in os.listdir(objects_bwd_dir):
+            if f.endswith('.mp4') and '_object_' in f:
+                # Extract object label using regex: _object_([^_]+)_
+                match = re.search(r'_object_([^_]+)_', f)
+                if match:
+                    label = match.group(1)
+                    bwd_videos[label] = os.path.join(objects_bwd_dir, f)
+    
+    # Find all forward object videos
+    fwd_videos = {}
+    if objects_fwd_dir and os.path.exists(objects_fwd_dir):
+        for f in os.listdir(objects_fwd_dir):
+            if f.endswith('.mp4') and '_object_' in f:
+                # Extract object label using regex: _object_([^_]+)_
+                match = re.search(r'_object_([^_]+)_', f)
+                if match:
+                    label = match.group(1)
+                    fwd_videos[label] = os.path.join(objects_fwd_dir, f)
+    
+    # Combine matching pairs
+    combined_count = 0
+    all_labels = set(bwd_videos.keys()) | set(fwd_videos.keys())
+    
+    if not all_labels:
+        print(f"  ℹ️  No {output_type} videos to combine")
+        return combined_count
+    
+    for label in sorted(all_labels):
+        video_bwd = bwd_videos.get(label)
+        video_fwd = fwd_videos.get(label)
+        
+        if video_bwd and video_fwd:
+            # Both exist, combine them
+            output_name = f"combined_object_{label}_{output_type}.mp4"
+            output_path = os.path.join(objects_combined_dir, output_name)
+            
+            try:
+                combine_videos(video_bwd, video_fwd, output_path, fps, skip_bwd_last_frame=True)
+                combined_count += 1
+            except Exception as e:
+                print(f"    ⚠ Failed to combine {label}: {str(e)}")
+        
+        elif video_bwd and not video_fwd:
+            # Only backward, copy it
+            output_name = f"combined_object_{label}_{output_type}_backward_only.mp4"
+            output_path = os.path.join(objects_combined_dir, output_name)
+            import shutil
+            shutil.copy(video_bwd, output_path)
+            print(f"    ✓ Copied backward-only: {output_name}")
+            combined_count += 1
+        
+        elif video_fwd and not video_bwd:
+            # Only forward, copy it
+            output_name = f"combined_object_{label}_{output_type}_forward_only.mp4"
+            output_path = os.path.join(objects_combined_dir, output_name)
+            import shutil
+            shutil.copy(video_fwd, output_path)
+            print(f"    ✓ Copied forward-only: {output_name}")
+            combined_count += 1
+    
+    print(f"  ✓ Combined {combined_count} {output_type} videos")
+    
+    return combined_count
+
+
 def combine_outputs(output_bwd_folder, output_fwd_folder, output_combined_folder, fps, video_name_base):
     """Combine all output videos from backward and forward pipelines."""
     print(f"\n{'='*70}")
@@ -475,11 +554,21 @@ def combine_outputs(output_bwd_folder, output_fwd_folder, output_combined_folder
     
     # Combine per-object cropped videos
     print(f"\n📁 Processing per-object cropped videos...")
-    objects_bwd = os.path.join(output_bwd_folder, 'objects_cropped') if bwd_exists else None
-    objects_fwd = os.path.join(output_fwd_folder, 'objects') if fwd_exists else None
-    objects_combined = os.path.join(output_combined_folder, 'objects_cropped')
+    objects_bwd_cropped = os.path.join(output_bwd_folder, 'objects_cropped') if bwd_exists else None
+    objects_fwd_cropped = os.path.join(output_fwd_folder, 'objects_cropped') if fwd_exists else None
+    objects_combined_cropped = os.path.join(output_combined_folder, 'objects_cropped')
     
-    combine_per_object_videos_v2(objects_bwd, objects_fwd, objects_combined, fps)
+    combine_object_videos_by_type(objects_bwd_cropped, objects_fwd_cropped, objects_combined_cropped, 
+                                    fps, 'cropped', 'backward_cropped', 'cropped')
+    
+    # Combine per-object isolated (uncropped) videos
+    print(f"\n📁 Processing per-object isolated videos...")
+    objects_bwd_isolated = os.path.join(output_bwd_folder, 'objects_isolated') if bwd_exists else None
+    objects_fwd_isolated = os.path.join(output_fwd_folder, 'objects_isolated') if fwd_exists else None
+    objects_combined_isolated = os.path.join(output_combined_folder, 'objects_isolated')
+    
+    combine_object_videos_by_type(objects_bwd_isolated, objects_fwd_isolated, objects_combined_isolated, 
+                                    fps, 'isolated', 'backward_isolated', 'isolated')
     
     print(f"\n{'='*70}")
     print(f"✅ OUTPUT COMBINATION COMPLETE")
@@ -489,10 +578,214 @@ def combine_outputs(output_bwd_folder, output_fwd_folder, output_combined_folder
     print(f"\n📊 Final Combined Output Structure:")
     print(f"  {output_combined_folder}/")
     print(f"    ├── {video_name_base}_combined_*.mp4  (4 overlay videos)")
-    print(f"    └── objects_cropped/")
-    print(f"        └── combined_object_*.mp4  (per-object cropped)")
+    print(f"    ├── objects_cropped/")
+    print(f"    │   └── combined_object_*.mp4  (per-object cropped)")
+    print(f"    └── objects_isolated/")
+    print(f"        └── combined_object_*.mp4  (per-object uncropped)")
     
     print(f"\n✅ Output saved to: {output_combined_folder}")
+
+
+def find_object_bounding_box(frame):
+    """Find tight bounding box of the object (non-black pixels)."""
+    if len(frame.shape) == 3:
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    else:
+        gray = frame
+    
+    _, binary = cv2.threshold(gray, 1, 255, cv2.THRESH_BINARY)
+    contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    if not contours:
+        return None
+    
+    x_min, y_min = frame.shape[1], frame.shape[0]
+    x_max, y_max = 0, 0
+    
+    for contour in contours:
+        x, y, w, h = cv2.boundingRect(contour)
+        x_min = min(x_min, x)
+        y_min = min(y_min, y)
+        x_max = max(x_max, x + w)
+        y_max = max(y_max, y + h)
+    
+    if x_min >= x_max or y_min >= y_max:
+        return None
+    
+    return x_min, y_min, x_max, y_max
+
+
+def get_average_bounding_box(video_path, sample_rate=10):
+    """Analyze video to find consistent bounding box of object."""
+    cap = cv2.VideoCapture(video_path)
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    
+    bboxes = []
+    frame_idx = 0
+    
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        
+        if frame_idx % sample_rate == 0:
+            bbox = find_object_bounding_box(frame)
+            if bbox:
+                bboxes.append(bbox)
+        
+        frame_idx += 1
+    
+    cap.release()
+    
+    if not bboxes:
+        return None
+    
+    x_mins = [b[0] for b in bboxes]
+    y_mins = [b[1] for b in bboxes]
+    x_maxs = [b[2] for b in bboxes]
+    y_maxs = [b[3] for b in bboxes]
+    
+    avg_x_min = np.percentile(x_mins, 25)
+    avg_y_min = np.percentile(y_mins, 25)
+    avg_x_max = np.percentile(x_maxs, 75)
+    avg_y_max = np.percentile(y_maxs, 75)
+    
+    return int(avg_x_min), int(avg_y_min), int(avg_x_max), int(avg_y_max)
+
+
+def add_padding(bbox, frame_h, frame_w, padding_ratio=0.15):
+    """Add padding around bounding box while keeping it within frame bounds."""
+    x1, y1, x2, y2 = bbox
+    w = x2 - x1
+    h = y2 - y1
+    
+    pad_x = int(w * padding_ratio)
+    pad_y = int(h * padding_ratio)
+    
+    x1 = max(0, x1 - pad_x)
+    y1 = max(0, y1 - pad_y)
+    x2 = min(frame_w, x2 + pad_x)
+    y2 = min(frame_h, y2 + pad_y)
+    
+    return x1, y1, x2, y2
+
+
+def postprocess_isolated_objects(output_combined_folder, padding_ratio=0.15):
+    """
+    Post-process isolated object videos in output_combined folder.
+    Creates high-resolution cropped versions with tight bounding boxes.
+    """
+    objects_isolated_dir = os.path.join(output_combined_folder, "objects_isolated")
+    
+    if not os.path.exists(objects_isolated_dir):
+        print(f"  ⊘ objects_isolated folder not found")
+        return False
+    
+    output_postprocessed_dir = os.path.join(output_combined_folder, "objects_isolated_postprocessed")
+    os.makedirs(output_postprocessed_dir, exist_ok=True)
+    
+    # Find all isolated object videos
+    video_files = [f for f in os.listdir(objects_isolated_dir) if 'isolated' in f and f.endswith('.mp4')]
+    
+    if not video_files:
+        print(f"  ⊘ No isolated object videos found in: {objects_isolated_dir}")
+        return True
+    
+    print(f"  🎬 Post-processing {len(video_files)} isolated object videos...")
+    
+    successful = 0
+    skipped = 0
+    failed = 0
+    
+    for video_file in sorted(video_files):
+        input_path = os.path.join(objects_isolated_dir, video_file)
+        
+        # Clean up filename: remove direction suffixes like _backward_only, _forward_only
+        clean_filename = video_file.replace('_backward_only', '').replace('_forward_only', '')
+        output_path = os.path.join(output_postprocessed_dir, clean_filename)
+        
+        try:
+            # Open input video
+            cap = cv2.VideoCapture(input_path)
+            if not cap.isOpened():
+                print(f"     ⊘ Could not open: {video_file}")
+                failed += 1
+                continue
+            
+            frame_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+            frame_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            fps = cap.get(cv2.CAP_PROP_FPS)
+            total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+            
+            if total_frames == 0:
+                print(f"     ⊘ Empty video: {video_file}")
+                cap.release()
+                skipped += 1
+                continue
+            
+            # Find average bounding box
+            bbox = get_average_bounding_box(input_path, sample_rate=max(1, total_frames // 30))
+            
+            if bbox is None:
+                print(f"     ⊘ No object detected: {video_file}")
+                cap.release()
+                skipped += 1
+                continue
+            
+            # Add padding
+            bbox = add_padding(bbox, frame_h, frame_w, padding_ratio)
+            x1, y1, x2, y2 = bbox
+            crop_w = x2 - x1
+            crop_h = y2 - y1
+            
+            if crop_w <= 0 or crop_h <= 0:
+                print(f"     ⊘ Invalid crop size: {video_file}")
+                cap.release()
+                skipped += 1
+                continue
+            
+            # Create output video writer
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            out_writer = cv2.VideoWriter(output_path, fourcc, fps, (crop_w, crop_h))
+            
+            if not out_writer.isOpened():
+                print(f"     ✗ Failed to create writer: {video_file}")
+                cap.release()
+                failed += 1
+                continue
+            
+            # Process frames
+            cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+            frame_count = 0
+            
+            for frame_idx in range(total_frames):
+                ret, frame = cap.read()
+                if not ret:
+                    break
+                
+                cropped = frame[y1:y2, x1:x2]
+                if cropped.size > 0:
+                    out_writer.write(cropped)
+                    frame_count += 1
+            
+            cap.release()
+            out_writer.release()
+            
+            if frame_count > 0:
+                successful += 1
+                size_mb = os.path.getsize(output_path) / 1024 / 1024
+                print(f"     ✓ {clean_filename} ({crop_w}x{crop_h}, {size_mb:.1f} MB)")
+            else:
+                print(f"     ✗ No frames written: {video_file}")
+                failed += 1
+            
+        except Exception as e:
+            print(f"     ✗ {video_file}: {str(e)}")
+            failed += 1
+    
+    print(f"  📊 Results: {successful} processed, {skipped} skipped, {failed} failed")
+    print(f"  ✅ Post-processing completed")
+    return True
 
 
 def main():
@@ -508,9 +801,13 @@ def main():
     else:
         processed_folder = os.path.join(script_dir, "processed_bidirectional", input_folder_name)
     
+    # Handle output folder structure
     if args.output_folder:
-        output_folder_main = os.path.abspath(args.output_folder)
+        # When --output-folder is specified, use: output_folder/{input_folder_name}/
+        output_folder_parent = os.path.abspath(args.output_folder)
+        output_folder_main = os.path.join(output_folder_parent, input_folder_name)
     else:
+        # Default: script_dir/output_bidirectional/{input_folder_name}/
         output_folder_main = os.path.join(script_dir, "output_bidirectional", input_folder_name)
     
     output_folder_bwd = os.path.join(output_folder_main, "output_backward")
@@ -576,6 +873,16 @@ def main():
         # Combine outputs (handles cases where one side is missing)
         combine_outputs(output_folder_bwd, output_folder_fwd, output_folder_combined, args.fps, video_name_base)
         
+        # Post-process isolated objects in combined output
+        print(f"\n{'='*70}")
+        print(f"POST-PROCESSING ISOLATED OBJECTS")
+        print(f"{'='*70}")
+        try:
+            postprocess_isolated_objects(output_folder_combined, padding_ratio=0.15)
+            print(f"✅ Post-processing completed")
+        except Exception as e:
+            print(f"⚠️  Post-processing had issues: {str(e)}")
+        
         # Print summary
         print(f"\n{'='*70}")
         print(f"PIPELINE COMPLETION SUMMARY")
@@ -587,6 +894,13 @@ def main():
         
         print("🎉 Pipeline completed successfully!")
         print(f"\n📂 Final output location: {output_folder_combined}")
+        print(f"   ├── overlay_combined.mp4")
+        print(f"   ├── overlay_combined_boxes.mp4")
+        print(f"   ├── overlay_combined_masks_blended.mp4")
+        print(f"   ├── overlay_combined_masks_only.mp4")
+        print(f"   ├── objects_cropped/")
+        print(f"   ├── objects_isolated/")
+        print(f"   └── objects_isolated_postprocessed/  (High-res zoomed objects)")
         
     except Exception as e:
         print(f"\n❌ Error: {str(e)}")

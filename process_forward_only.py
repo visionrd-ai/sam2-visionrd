@@ -471,18 +471,20 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
     print(f"{'='*70}")
     
     # Create output directory structure
-    objects_dir = os.path.join(output_dir, "objects")
-    masks_only_dir = os.path.join(output_dir, "masks_only")
+    masks_dir = os.path.join(output_dir, "masks")
+    objects_cropped_dir = os.path.join(output_dir, "objects_cropped")
+    objects_isolated_dir = os.path.join(output_dir, "objects_isolated")
     
     os.makedirs(output_dir, exist_ok=True)
-    os.makedirs(objects_dir, exist_ok=True)
-    os.makedirs(masks_only_dir, exist_ok=True)
+    os.makedirs(masks_dir, exist_ok=True)
+    os.makedirs(objects_cropped_dir, exist_ok=True)
+    os.makedirs(objects_isolated_dir, exist_ok=True)
     
     # Define output paths for 4 overlay videos
-    overlay_both_path = os.path.join(output_dir, f"{video_name_base}_masks_and_boxes.mp4")
-    overlay_boxes_path = os.path.join(output_dir, f"{video_name_base}_boxes.mp4")
-    overlay_masks_blended_path = os.path.join(output_dir, f"{video_name_base}_masks_overlaid.mp4")
-    overlay_masks_only_path = os.path.join(output_dir, f"{video_name_base}_masks_only.mp4")
+    overlay_both_path = os.path.join(output_dir, f"{video_name_base}_processed_masks_and_boxes.mp4")
+    overlay_boxes_path = os.path.join(output_dir, f"{video_name_base}_processed_boxes.mp4")
+    overlay_masks_blended_path = os.path.join(output_dir, f"{video_name_base}_processed_masks_overlaid.mp4")
+    overlay_masks_only_path = os.path.join(output_dir, f"{video_name_base}_processed_masks_only.mp4")
     
     # Initialize video writers for 4 overlay videos
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
@@ -495,35 +497,45 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
             writer_masks_blended.isOpened() and writer_masks_only.isOpened()):
         raise RuntimeError("Failed to initialize overlay video writers")
     
-    # Initialize video writers for individual objects
-    object_writers = {}
-    object_video_paths = {}
+    # Initialize video writers for isolated (uncropped) objects
+    object_isolated_writers = {}
+    object_isolated_video_paths = {}
     
     for obj_id, mask_info in all_masks.items():
         label = mask_info.get('label', f'obj_{obj_id}')
         clean_label = ''.join(c if c.isalnum() or c in ['-', '_'] else '_' for c in str(label))
         
-        obj_video_path = os.path.join(objects_dir, f"{video_name_base}_object_{clean_label}_isolated.mp4")
-        obj_writer = cv2.VideoWriter(obj_video_path, fourcc, fps, (width, height))
+        obj_isolated_path = os.path.join(objects_isolated_dir, f"{video_name_base}_object_{clean_label}_isolated.mp4")
+        obj_writer = cv2.VideoWriter(obj_isolated_path, fourcc, fps, (width, height))
         
         if obj_writer.isOpened():
-            object_writers[obj_id] = obj_writer
-            object_video_paths[obj_id] = obj_video_path
+            object_isolated_writers[obj_id] = obj_writer
+            object_isolated_video_paths[obj_id] = obj_isolated_path
     
-    # Initialize video writers for mask-only videos
-    mask_only_writers = {}
-    mask_only_video_paths = {}
+    # Initialize video writers for cropped objects
+    object_cropped_writers = {}
+    object_cropped_video_paths = {}
     
     for obj_id, mask_info in all_masks.items():
         label = mask_info.get('label', f'obj_{obj_id}')
         clean_label = ''.join(c if c.isalnum() or c in ['-', '_'] else '_' for c in str(label))
         
-        mask_video_path = os.path.join(masks_only_dir, f"{video_name_base}_mask_{clean_label}.mp4")
-        mask_writer = cv2.VideoWriter(mask_video_path, fourcc, fps, (width, height))
+        box = mask_info['box']
+        x1, y1, x2, y2 = int(box[0]), int(box[1]), int(box[2]), int(box[3])
+        crop_width = x2 - x1
+        crop_height = y2 - y1
         
-        if mask_writer.isOpened():
-            mask_only_writers[obj_id] = mask_writer
-            mask_only_video_paths[obj_id] = mask_video_path
+        obj_cropped_path = os.path.join(objects_cropped_dir, f"{video_name_base}_object_{clean_label}_cropped.mp4")
+        obj_cropped_writer = cv2.VideoWriter(obj_cropped_path, fourcc, fps, (crop_width, crop_height))
+        
+        if obj_cropped_writer.isOpened():
+            object_cropped_writers[obj_id] = {
+                'writer': obj_cropped_writer,
+                'box': box,
+                'label': label,
+                'path': obj_cropped_path
+            }
+            object_cropped_video_paths[obj_id] = obj_cropped_path
     
     print(f"\n📹 Main Overlay Videos (4 total):")
     print(f"  1. Masks + Boxes: {os.path.basename(overlay_both_path)}")
@@ -531,8 +543,9 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
     print(f"  3. Masks Overlaid: {os.path.basename(overlay_masks_blended_path)}")
     print(f"  4. Masks Only (solid): {os.path.basename(overlay_masks_only_path)}")
     
-    print(f"\n📁 objects/ folder ({len(object_writers)} videos)")
-    print(f"📁 masks_only/ folder ({len(mask_only_writers)} videos)")
+    print(f"\n📁 objects_isolated/ folder ({len(object_isolated_writers)} uncropped videos)")
+    print(f"📁 objects_cropped/ folder ({len(object_cropped_writers)} cropped videos)")
+    print(f"📁 masks/ folder (individual masks per object per frame)")
     
     print(f"\n  Resolution: {width}x{height}")
     print(f"  FPS: {fps}")
@@ -602,8 +615,22 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
         writer_masks_blended.write(cv2.cvtColor(overlay_masks_blended, cv2.COLOR_RGB2BGR))
         writer_masks_only.write(cv2.cvtColor(overlay_masks_only, cv2.COLOR_RGB2BGR))
         
-        # Write individual object videos
-        for obj_id, obj_writer in object_writers.items():
+        # Save individual masks to masks folder
+        for obj_id, mask in frame_masks.items():
+            label = all_masks[obj_id].get('label', f'obj_{obj_id}')
+            clean_label = ''.join(c if c.isalnum() or c in ['-', '_'] else '_' for c in str(label))
+            
+            # Create sub-folder for this object in masks directory
+            mask_obj_dir = os.path.join(masks_dir, f"object_{clean_label}")
+            os.makedirs(mask_obj_dir, exist_ok=True)
+            
+            # Save mask as image
+            mask_img = (mask.astype(np.uint8) * 255)
+            mask_path = os.path.join(mask_obj_dir, f"frame_{out_frame_idx:05d}_mask.png")
+            cv2.imwrite(mask_path, mask_img)
+        
+        # Write isolated (uncropped) object videos
+        for obj_id, obj_writer in object_isolated_writers.items():
             isolated_frame = np.zeros_like(frame)
             
             if obj_id in frame_masks:
@@ -613,21 +640,16 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
             
             obj_writer.write(isolated_frame)
         
-        # Write mask-only videos
-        for obj_id, mask_writer in mask_only_writers.items():
-            mask_only_frame = np.zeros((height, width, 3), dtype=np.uint8)
+        # Write cropped object videos
+        for obj_id, obj_info in object_cropped_writers.items():
+            obj_cropped_writer = obj_info['writer']
+            box = obj_info['box']
+            x1, y1, x2, y2 = int(box[0]), int(box[1]), int(box[2]), int(box[3])
             
-            if obj_id in frame_masks:
-                mask = frame_masks[obj_id]
-                color = np.array([*cmap(obj_id)[:3]])
-                
-                mask_3channel = np.repeat(mask[:, :, np.newaxis], 3, axis=2)
-                color_rgb = color.reshape(1, 1, 3)
-                mask_colored = (mask_3channel * color_rgb * 255).astype(np.uint8)
-                
-                mask_only_frame = mask_colored
+            cropped_frame = frame[y1:y2, x1:x2]
             
-            mask_writer.write(cv2.cvtColor(mask_only_frame, cv2.COLOR_RGB2BGR))
+            if cropped_frame.size > 0:
+                obj_cropped_writer.write(cropped_frame)
         
         frame_count += 1
         
@@ -641,11 +663,13 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
     writer_masks_blended.release()
     writer_masks_only.release()
     
-    for obj_writer in object_writers.values():
+    for obj_writer in object_isolated_writers.values():
         obj_writer.release()
     
-    for mask_writer in mask_only_writers.values():
-        mask_writer.release()
+
+    
+    for obj_info in object_cropped_writers.values():
+        obj_info['writer'].release()
     
     # Verify outputs
     print(f"\n\n{'='*70}")
@@ -666,8 +690,9 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
         status = '✓' if exists else '✗'
         print(f"  {vid_name}: {size:.2f} MB {status}")
     
-    print(f"\n📁 objects/ folder: {len(object_video_paths)} videos")
-    print(f"📁 masks_only/ folder: {len(mask_only_video_paths)} videos")
+    print(f"\n📁 objects_isolated/ folder: {len(object_isolated_video_paths)} uncropped videos")
+    print(f"📁 objects_cropped/ folder: {len(object_cropped_video_paths)} cropped videos")
+    print(f"📁 masks/ folder: {len(mask_video_paths)} per-object mask videos (mask overlaid on frame)")
     
     print(f"\n{'='*70}")
     print(f"Summary:")
@@ -675,13 +700,15 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
     print(f"  Resolution: {width}x{height}")
     print(f"  FPS: {fps}")
     print(f"  Objects tracked: {len(all_masks)}")
-    print(f"  Total videos: {4 + len(object_video_paths) + len(mask_only_video_paths)}")
+    print(f"  Total videos: {4 + len(object_isolated_video_paths) + len(object_cropped_video_paths)}")
     print(f"{'='*70}")
     print(f"\n💡 All videos saved to: {output_dir}")
-    print(f"   - Main videos: {output_dir}")
-    print(f"   - Object videos: {objects_dir}")
-    print(f"   - Mask videos: {masks_only_dir}")
+    print(f"   - Main overlay videos: {output_dir}")
+    print(f"   - Isolated objects: {objects_isolated_dir}")
+    print(f"   - Cropped objects: {objects_cropped_dir}")
+
     print(f"{'='*70}\n")
+
 
 
 def main():
@@ -703,10 +730,13 @@ def main():
     else:
         processed_folder = os.path.join(script_dir, "processed", input_folder_name)
     
+    # Handle output folder structure
     if args.output_folder:
+        # When --output-folder is specified, use: output_folder
         output_folder = os.path.abspath(args.output_folder)
     else:
-        output_folder = os.path.join(script_dir, "output", input_folder_name)
+        # Default: script_dir/output_forward/{input_folder_name}/
+        output_folder = os.path.join(script_dir, "output_forward", input_folder_name)
     
     print(f"\n{'='*70}")
     print(f"SAM2 VIDEO SEGMENTATION PIPELINE")

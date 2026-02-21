@@ -23,4 +23,4 @@ python process_folder_hira.py \
   --fps 20 \
   --device cuda \
   --continue-on-error \
-  --output-folder /custom/output/path
+  --output-folder /path/to/custom/output 

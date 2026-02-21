@@ -472,9 +472,30 @@ def create_backward_videos(all_masks_bwd, frames_dir_bwd, frame_names_bwd, data_
                 'path': obj_video_path
             }
     
+    # ==================== CREATE PER-OBJECT UNCROPPED/ISOLATED VIDEOS ====================
+    objects_isolated_dir = os.path.join(output_dir, "objects_isolated")
+    os.makedirs(objects_isolated_dir, exist_ok=True)
+    
+    object_isolated_writers = {}
+    
+    for obj_id, mask_info in all_masks_bwd.items():
+        label = mask_info.get('label', f'obj_{obj_id}')
+        clean_label = ''.join(c if c.isalnum() or c in ['-', '_'] else '_' for c in str(label))
+        
+        obj_isolated_path = os.path.join(objects_isolated_dir, f"{video_name_base}_object_{clean_label}_backward_isolated.mp4")
+        obj_isolated_writer = cv2.VideoWriter(obj_isolated_path, fourcc, fps, (width, height))
+        
+        if obj_isolated_writer.isOpened():
+            object_isolated_writers[obj_id] = {
+                'writer': obj_isolated_writer,
+                'label': label,
+                'path': obj_isolated_path
+            }
+    
     print(f"\n📹 Output videos:")
     print(f"  4 backward overlay videos (re-reversed to chronological order)")
     print(f"  {len(object_writers)} cropped per-object videos (no mask overlay)")
+    print(f"  {len(object_isolated_writers)} uncropped isolated per-object videos (full frame, only object mask)")
     
     # ==================== WRITE FRAMES ====================
     cmap = plt.get_cmap("tab10")
@@ -535,6 +556,19 @@ def create_backward_videos(all_masks_bwd, frames_dir_bwd, frame_names_bwd, data_
             if cropped_frame.size > 0:
                 obj_writer.write(cropped_frame)
         
+        # Write uncropped isolated per-object videos
+        for obj_id, obj_info in object_isolated_writers.items():
+            obj_isolated_writer = obj_info['writer']
+            isolated_frame = np.zeros_like(frame)
+            
+            # Apply mask if available for this frame and object
+            if frame_idx in backward_masks_by_frame and obj_id in backward_masks_by_frame[frame_idx]:
+                mask = backward_masks_by_frame[frame_idx][obj_id]
+                mask_bool = mask.astype(bool)
+                isolated_frame[mask_bool] = frame[mask_bool]
+            
+            obj_isolated_writer.write(isolated_frame)
+        
         if (frame_idx + 1) % 10 == 0:
             print(f"  Progress: {frame_idx + 1}/{len(frame_names_bwd)} frames", end='\r')
     
@@ -545,6 +579,9 @@ def create_backward_videos(all_masks_bwd, frames_dir_bwd, frame_names_bwd, data_
     writer_masks_only.release()
     
     for obj_info in object_writers.values():
+        obj_info['writer'].release()
+    
+    for obj_info in object_isolated_writers.values():
         obj_info['writer'].release()
     
     # ==================== SUMMARY ====================
@@ -584,6 +621,16 @@ def create_backward_videos(all_masks_bwd, frames_dir_bwd, frame_names_bwd, data_
             os.remove(obj_path)
             os.rename(temp_path, obj_path)
     
+    # Reverse all isolated object videos
+    print(f"\nReversing isolated object videos...")
+    for obj_id, obj_info in object_isolated_writers.items():
+        obj_path = obj_info['path']
+        if os.path.exists(obj_path):
+            temp_path = obj_path.replace('.mp4', '_temp.mp4')
+            reverse_video(obj_path, temp_path, fps)
+            os.remove(obj_path)
+            os.rename(temp_path, obj_path)
+    
     print(f"\n{'='*70}")
     print(f"✅ BACKWARD VIDEO GENERATION COMPLETE")
     print(f"{'='*70}")
@@ -610,10 +657,19 @@ def create_backward_videos(all_masks_bwd, frames_dir_bwd, frame_names_bwd, data_
         status = '✓' if exists else '✗'
         print(f"    {status} {obj_info['label']}: {size:.2f} MB")
     
-    total_videos = 4 + len(object_writers)
+    print(f"\n📁 objects_isolated/ folder:")
+    print(f"  {len(object_isolated_writers)} uncropped isolated per-object videos")
+    for obj_id, obj_info in object_isolated_writers.items():
+        exists = os.path.exists(obj_info['path'])
+        size = os.path.getsize(obj_info['path']) / 1024 / 1024 if exists else 0
+        status = '✓' if exists else '✗'
+        print(f"    {status} {obj_info['label']}: {size:.2f} MB")
+    
+    total_videos = 4 + len(object_writers) + len(object_isolated_writers)
     print(f"\n📊 Total videos: {total_videos}")
     print(f"   - 4 backward overlay videos (in chronological order)")
     print(f"   - {len(object_writers)} cropped object videos")
+    print(f"   - {len(object_isolated_writers)} uncropped isolated object videos")
     
     print(f"\n{'='*70}")
     print(f"💡 All backward videos saved to: {output_dir}")
@@ -632,6 +688,15 @@ def main():
         processed_folder = os.path.abspath(args.processed_folder)
     else:
         processed_folder = os.path.join(script_dir, "processed_backward_test", input_folder_name)
+    
+    # Handle output folder structure
+    if args.output_folder:
+        # When --output-folder is specified, use: output_folder/{input_folder_name}/output_backward/
+        output_folder_parent = os.path.abspath(args.output_folder)
+        output_folder = output_folder_parent
+    else:
+        # Default: script_dir/output_backward/{input_folder_name}/
+        output_folder = os.path.join(script_dir, "output_backward", input_folder_name)
     
     if args.output_folder:
         output_folder = os.path.abspath(args.output_folder)
