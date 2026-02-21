@@ -788,6 +788,141 @@ def postprocess_isolated_objects(output_combined_folder, padding_ratio=0.15):
     return True
 
 
+def get_bbox_from_frame(frame, threshold=10):
+    """Get bounding box from a frame (find non-black regions)."""
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) if len(frame.shape) == 3 else frame
+    _, binary = cv2.threshold(gray, threshold, 255, cv2.THRESH_BINARY)
+    
+    ys, xs = np.where(binary > 0)
+    if len(xs) == 0 or len(ys) == 0:
+        return None
+    return np.min(xs), np.min(ys), np.max(xs), np.max(ys)
+
+
+def crop_and_center_on_canvas(frame, bbox, output_size=512):
+    """
+    Crop frame using bounding box and center on black canvas.
+    Maintains aspect ratio.
+    """
+    if bbox is None:
+        return np.zeros((output_size, output_size, 3), dtype=np.uint8)
+    
+    x_min, y_min, x_max, y_max = bbox
+    cropped = frame[y_min:y_max, x_min:x_max]
+    
+    if cropped.size == 0:
+        return np.zeros((output_size, output_size, 3), dtype=np.uint8)
+    
+    # Resize to fit in canvas while maintaining aspect ratio
+    h, w = cropped.shape[:2]
+    scale = min(output_size / h, output_size / w)
+    new_w = int(w * scale)
+    new_h = int(h * scale)
+    
+    resized = cv2.resize(cropped, (new_w, new_h), interpolation=cv2.INTER_LINEAR)
+    
+    # Center on black canvas
+    canvas = np.zeros((output_size, output_size, 3), dtype=np.uint8)
+    x_offset = (output_size - new_w) // 2
+    y_offset = (output_size - new_h) // 2
+    canvas[y_offset:y_offset+new_h, x_offset:x_offset+new_w] = resized
+    
+    return canvas
+
+
+def postprocess_isolated_objects_black_canvas(output_combined_folder, output_size=512, fps=20):
+    """
+    Post-process isolated object videos with black canvas centering.
+    Creates fixed-size outputs with objects centered on black background.
+    """
+    objects_isolated_dir = os.path.join(output_combined_folder, "objects_isolated")
+    
+    if not os.path.exists(objects_isolated_dir):
+        print(f"  ⊘ objects_isolated folder not found")
+        return False
+    
+    output_postprocessed_dir = os.path.join(output_combined_folder, "objects_isolated_black_canvas")
+    os.makedirs(output_postprocessed_dir, exist_ok=True)
+    
+    # Find all isolated object videos
+    video_files = [f for f in os.listdir(objects_isolated_dir) if 'isolated' in f and f.endswith('.mp4')]
+    
+    if not video_files:
+        print(f"  ⊘ No isolated object videos found in: {objects_isolated_dir}")
+        return True
+    
+    print(f"  🎬 Post-processing {len(video_files)} videos with black canvas (centered)...")
+    
+    successful = 0
+    failed = 0
+    
+    for video_file in sorted(video_files):
+        input_path = os.path.join(objects_isolated_dir, video_file)
+        
+        # Clean up filename
+        clean_filename = video_file.replace('_backward_only', '').replace('_forward_only', '')
+        output_path = os.path.join(output_postprocessed_dir, clean_filename)
+        
+        try:
+            # Open input video
+            cap = cv2.VideoCapture(input_path)
+            if not cap.isOpened():
+                print(f"     ✗ Could not open: {video_file}")
+                failed += 1
+                continue
+            
+            fps_in = cap.get(cv2.CAP_PROP_FPS)
+            total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+            
+            if total_frames == 0:
+                print(f"     ⊘ Empty video: {video_file}")
+                cap.release()
+                failed += 1
+                continue
+            
+            # Create output video writer
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            out_writer = cv2.VideoWriter(output_path, fourcc, fps_in, (output_size, output_size))
+            
+            if not out_writer.isOpened():
+                print(f"     ✗ Failed to create writer: {video_file}")
+                cap.release()
+                failed += 1
+                continue
+            
+            # Process frames
+            frame_count = 0
+            
+            for frame_idx in range(total_frames):
+                ret, frame = cap.read()
+                if not ret:
+                    break
+                
+                bbox = get_bbox_from_frame(frame, threshold=10)
+                centered_frame = crop_and_center_on_canvas(frame, bbox, output_size)
+                out_writer.write(centered_frame)
+                frame_count += 1
+            
+            cap.release()
+            out_writer.release()
+            
+            if frame_count > 0:
+                successful += 1
+                size_mb = os.path.getsize(output_path) / 1024 / 1024
+                print(f"     ✓ {clean_filename} ({output_size}x{output_size}, {size_mb:.1f} MB)")
+            else:
+                print(f"     ✗ No frames written: {video_file}")
+                failed += 1
+            
+        except Exception as e:
+            print(f"     ✗ {video_file}: {str(e)}")
+            failed += 1
+    
+    print(f"  📊 Results: {successful} processed, {failed} failed")
+    print(f"  ✅ Black canvas post-processing completed")
+    return True
+
+
 def main():
     """Main bidirectional combined pipeline execution."""
     args = parse_args()
@@ -878,8 +1013,15 @@ def main():
         print(f"POST-PROCESSING ISOLATED OBJECTS")
         print(f"{'='*70}")
         try:
+            # Step 1: Tight crop with padding (high-res object focus)
+            print(f"\n1️⃣ Tight crop post-processing:")
             postprocess_isolated_objects(output_folder_combined, padding_ratio=0.15)
-            print(f"✅ Post-processing completed")
+            
+            # Step 2: Black canvas centering (fixed size, centered on black)
+            print(f"\n2️⃣ Black canvas post-processing:")
+            postprocess_isolated_objects_black_canvas(output_folder_combined, output_size=512, fps=args.fps)
+            
+            print(f"\n✅ All post-processing completed")
         except Exception as e:
             print(f"⚠️  Post-processing had issues: {str(e)}")
         
@@ -900,7 +1042,8 @@ def main():
         print(f"   ├── overlay_combined_masks_only.mp4")
         print(f"   ├── objects_cropped/")
         print(f"   ├── objects_isolated/")
-        print(f"   └── objects_isolated_postprocessed/  (High-res zoomed objects)")
+        print(f"   ├── objects_isolated_postprocessed/  (High-res tight crops)")
+        print(f"   └── objects_isolated_black_canvas/   (512x512 centered on black)")
         
     except Exception as e:
         print(f"\n❌ Error: {str(e)}")

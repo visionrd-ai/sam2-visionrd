@@ -1,0 +1,21 @@
+PROCESSED VIDEO ANNOTATIONS
+======================================================================
+
+Source Video: 24-DEC-25-10:42:11:AM_2.avi (trim 1)_trimmed_test_60frames.mp4
+Source JSON: 24-DEC-25-10:42:11:AM_2.avi (trim 1)_trimmed_test_60frames.json
+Processed Date: 2026-02-21 15:57:16
+
+Video Properties:
+  Resolution: 640x480
+  FPS: 20.0
+  Total Frames: 30
+
+Processing:
+  Original first annotated frame: frameNo 31
+  Now starts at: frameNo 1
+  Frame offset: 30 frames removed
+
+Annotations:
+  Total annotated frames: 1
+  Objects in first frame: 5
+
