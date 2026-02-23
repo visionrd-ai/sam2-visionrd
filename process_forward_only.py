@@ -471,12 +471,10 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
     print(f"{'='*70}")
     
     # Create output directory structure
-    masks_dir = os.path.join(output_dir, "masks")
     objects_cropped_dir = os.path.join(output_dir, "objects_cropped")
     objects_isolated_dir = os.path.join(output_dir, "objects_isolated")
     
     os.makedirs(output_dir, exist_ok=True)
-    os.makedirs(masks_dir, exist_ok=True)
     os.makedirs(objects_cropped_dir, exist_ok=True)
     os.makedirs(objects_isolated_dir, exist_ok=True)
     
@@ -545,7 +543,6 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
     
     print(f"\n📁 objects_isolated/ folder ({len(object_isolated_writers)} uncropped videos)")
     print(f"📁 objects_cropped/ folder ({len(object_cropped_writers)} cropped videos)")
-    print(f"📁 masks/ folder (individual masks per object per frame)")
     
     print(f"\n  Resolution: {width}x{height}")
     print(f"  FPS: {fps}")
@@ -614,20 +611,6 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
         writer_boxes.write(cv2.cvtColor(overlay_boxes, cv2.COLOR_RGB2BGR))
         writer_masks_blended.write(cv2.cvtColor(overlay_masks_blended, cv2.COLOR_RGB2BGR))
         writer_masks_only.write(cv2.cvtColor(overlay_masks_only, cv2.COLOR_RGB2BGR))
-        
-        # Save individual masks to masks folder
-        for obj_id, mask in frame_masks.items():
-            label = all_masks[obj_id].get('label', f'obj_{obj_id}')
-            clean_label = ''.join(c if c.isalnum() or c in ['-', '_'] else '_' for c in str(label))
-            
-            # Create sub-folder for this object in masks directory
-            mask_obj_dir = os.path.join(masks_dir, f"object_{clean_label}")
-            os.makedirs(mask_obj_dir, exist_ok=True)
-            
-            # Save mask as image
-            mask_img = (mask.astype(np.uint8) * 255)
-            mask_path = os.path.join(mask_obj_dir, f"frame_{out_frame_idx:05d}_mask.png")
-            cv2.imwrite(mask_path, mask_img)
         
         # Write isolated (uncropped) object videos
         for obj_id, obj_writer in object_isolated_writers.items():
