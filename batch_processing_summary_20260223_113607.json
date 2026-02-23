@@ -1,0 +1,15 @@
+{
+  "processing_date": "2026-02-23 11:36:07",
+  "total_folders": 1,
+  "successful": 1,
+  "failed": 0,
+  "results": [
+    {
+      "folder": "test",
+      "path": "/home/multi-gpu/ai_res/Hira/sam2-visionrd/DATA11/test",
+      "success": true,
+      "error": null,
+      "index": 1
+    }
+  ]
+}

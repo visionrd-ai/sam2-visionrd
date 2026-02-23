@@ -3,7 +3,7 @@ PROCESSED VIDEO ANNOTATIONS
 
 Source Video: 24-DEC-25-10:42:11:AM_2.avi (trim 1)_trimmed_test_60frames.mp4
 Source JSON: 24-DEC-25-10:42:11:AM_2.avi (trim 1)_trimmed_test_60frames.json
-Processed Date: 2026-02-21 15:57:16
+Processed Date: 2026-02-23 11:37:37
 
 Video Properties:
   Resolution: 640x480

@@ -481,10 +481,10 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
     os.makedirs(objects_isolated_dir, exist_ok=True)
     
     # Define output paths for 4 overlay videos
-    overlay_both_path = os.path.join(output_dir, f"{video_name_base}_processed_masks_and_boxes.mp4")
-    overlay_boxes_path = os.path.join(output_dir, f"{video_name_base}_processed_boxes.mp4")
-    overlay_masks_blended_path = os.path.join(output_dir, f"{video_name_base}_processed_masks_overlaid.mp4")
-    overlay_masks_only_path = os.path.join(output_dir, f"{video_name_base}_processed_masks_only.mp4")
+    overlay_both_path = os.path.join(output_dir, f"{video_name_base}_masks_and_boxes.mp4")
+    overlay_boxes_path = os.path.join(output_dir, f"{video_name_base}_boxes.mp4")
+    overlay_masks_blended_path = os.path.join(output_dir, f"{video_name_base}_masks_overlaid.mp4")
+    overlay_masks_only_path = os.path.join(output_dir, f"{video_name_base}_masks_only.mp4")
     
     # Initialize video writers for 4 overlay videos
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
@@ -692,9 +692,8 @@ def propagate_and_create_videos(predictor, inference_state, all_masks, frames_di
     
     print(f"\n📁 objects_isolated/ folder: {len(object_isolated_video_paths)} uncropped videos")
     print(f"📁 objects_cropped/ folder: {len(object_cropped_video_paths)} cropped videos")
-    print(f"📁 masks/ folder: {len(mask_video_paths)} per-object mask videos (mask overlaid on frame)")
     
-    print(f"\n{'='*70}")
+    print(f"{'='*70}")
     print(f"Summary:")
     print(f"  Frames processed: {frame_count}")
     print(f"  Resolution: {width}x{height}")
